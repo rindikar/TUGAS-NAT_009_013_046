@@ -69,3 +69,11 @@ _IP Address_ yang diberikan kepada Router dan Server adalah sebagai berikut:
      ![clone3](https://user-images.githubusercontent.com/49342639/103996254-2623f100-51cc-11eb-81e7-197ef3830cb9.jpg)
 
      ![clone4](https://user-images.githubusercontent.com/49342639/103996257-26bc8780-51cc-11eb-95a2-b75ec973220c.JPG)
+
+2. Memulai untuk menjalankan **router** dan mengatur _IP Address_ untuk **Router** pada file ```etc/netplan/00-installer-config.yaml```:
+   
+   ![net-router](https://user-images.githubusercontent.com/49342639/103997602-e52cdc00-51cd-11eb-8222-817b9c2afa60.JPG)
+
+   **Keterangan**:
+   - Adapter ```enp0s3``` yang digunakan oleh **Router** agar terhubung dengan **_Cloud_**(Internet) menggunakan DHCP ```dhcp4: true```
+   - Sedangkan, adapter ```enp0s8``` yang digunakan oleh **Router** agar terhubung dengan **Server** menggunakan _Static IP_ yaitu ```addresses: [192.168.1.1/24]```. Dikarenakan menggunakan _Static IP_, maka fungsi DHCP dimatikan pada adapter **enp0s8** ini ```dhcp4:false```

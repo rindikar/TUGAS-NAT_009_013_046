@@ -92,10 +92,15 @@ _IP Address_ yang diberikan kepada Router dan Server adalah sebagai berikut:
     
      ![server](https://user-images.githubusercontent.com/49342639/104005454-bae01c00-51d7-11eb-8875-2be7ab18cf5f.JPG)
 
-4. Melakukan konfigurasi **IP Masquerade** di **Router** karena **Router** menjadi _gateway IP_ dari _IP Address_ lainnya dengan menambahkan table NAT Masquerade melalui perintah berikut:
+4. Untuk **Router** diatur dulu ```net.ipv4.ip_forward=1``` pada **/etc/sysctl.conf**. Lalu, diaktifkan dengan perintah ```sysctl -p```
+
+5. Melakukan konfigurasi **IP Masquerade** di **Router** karena **Router** menjadi _gateway IP_ dari _IP Address_ lainnya dengan menambahkan table NAT Masquerade melalui perintah berikut:
    ```sh
-   sudo iptables -t nat -A POSTROUTING -o enp0s3 -j MASQUERADE
+   iptables -t nat -A POSTROUTING -o enp0s3 -j MASQUERADE
    ``` 
+
+   ![masquerade](https://user-images.githubusercontent.com/49342639/104006697-6dfd4500-51d9-11eb-8bd4-d6255da3f24d.JPG)
+
    **Keterangan**:
    Kita menggunakan ```-t nat``` NAT Table pada ```-A POSTROUTING``` POSTROUTING chain untuk mengubah _Source IP Address_ menjadi _IP enp0s3 Router_ yaitu 10.0.2.15 karena **Router** terhubung ke **_Cloud_**(Internet) melalui **enp0s3**
 
